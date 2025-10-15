@@ -33,8 +33,8 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22014
-        source: "package.json, dist/*"
-        target: "/var/www/r312/"
+        source: "dist/*"
+        target: "/var/www/devoirtd/"
         strip_components: 1
         rm: false
         overwrite: true
@@ -48,10 +48,9 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: 22014
         script: |
-          set -e
-          cd /var/www/r312/server
-          npm ci
+          mkadir -p /var/www/devoirtd/server
+          cd /var/www/devoirtd/server
           npm install astro
           npm install send server-destroy
-          PORT=8082 pm2 restart r312 || PORT=8082 pm2 start entry.mjs --name r312
+          PORT=8084 pm2 restart devoirtd || PORT=8084 pm2 start entry.mjs --name devoirtd
           pm2 save
