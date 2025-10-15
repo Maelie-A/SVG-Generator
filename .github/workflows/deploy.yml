@@ -52,5 +52,5 @@ jobs:
           cd /var/www/devoirtd/server
           npm install astro
           npm install send server-destroy
-          PORT=8084 pm2 restart devoirtd || PORT=8084 pm2 start entry.mjs --name devoirtd
+          PORT=8085 pm2 restart devoirtd || PORT=8085 pm2 start entry.mjs --name devoirtd
           pm2 save
